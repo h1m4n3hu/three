@@ -12,6 +12,7 @@
             var material=new THREE.MeshMatcapMaterial({color:0xff0000})
             var mesh=new THREE.Mesh(geometry,material);
             scene.add(mesh);
+            mesh.position.x=-2;
         }
 
         var scene=new THREE.Scene();
