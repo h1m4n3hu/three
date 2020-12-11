@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <!--Mesh lambert dark shade wala hota h-->
+        <meta http-equiv="content-type" content="text/html; charset-UTF-8" />
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r123/three.min.js" integrity="sha512-Q+IG0h7As6sfqE2t1Xf5IeamNyCXb4EXxGCA9Mlbpv7xtwurVHNdVDbyWeSQ3ulPf2FRlqeu77Ec3SJDdIR63w==" crossorigin="anonymous"></script>
+        <script src="OrbitControls.js"></script>
+    </head>
+<body>
+    <style>
+        body{
+            overflow: hidden;
+            margin: 0;
+        }
+    </style>
+
+    <script>
+        var scene=new THREE.Scene();
+        var cam=new THREE.PerspectiveCamera(75,window.innerWidth/window.innerHeight,0.1,1000);
+        cam.position.z=10;
+        cam.position.y=5;
+        cam.position.x=5;
+        var renderer=new THREE.WebGLRenderer({antialias:true});
+        renderer.setClearColor("rgb(100,0,200)");
+        renderer.setSize(window.innerWidth,window.innerHeight);
+        document.body.appendChild(renderer.domElement);
+
+        var light=new THREE.PointLight(0xffffff,1,400);
+        light.position.set(10,0,20);
+        scene.add(light);
+
+        var planer=new THREE.PlaneGeometry(5,5,5,5);
+        var planet=new THREE.MeshBasicMaterial({wireframe:true,color:0xffff00,side:THREE.DoubleSide})
+        var plane=new THREE.Mesh(planer,planet);
+        plane.rotation.x=Math.PI/2;
+        plane.position.y=1.5
+        scene.add(plane);
+        var planer=new THREE.PlaneGeometry(5,5,5,5);
+        var planet=new THREE.MeshBasicMaterial({wireframe:true,color:0xff0000,side:THREE.DoubleSide})
+        var plane=new THREE.Mesh(planer,planet);
+        plane.rotation.x=Math.PI/2;
+        plane.position.y=-3.5
+        scene.add(plane);
+        var planer=new THREE.PlaneGeometry(5,5,5,5);
+        var planet=new THREE.MeshBasicMaterial({wireframe:true,color:0x00ff00,side:THREE.DoubleSide})
+        var plane=new THREE.Mesh(planer,planet);
+        plane.position.y=-1
+        plane.position.z=-2.5
+        scene.add(plane);
+        var planer=new THREE.PlaneGeometry(5,5,5,5);
+        var planet=new THREE.MeshBasicMaterial({wireframe:true,color:0xff00ff,side:THREE.DoubleSide})
+        var plane=new THREE.Mesh(planer,planet);
+        plane.position.y=-1
+        plane.position.z=2.5
+        scene.add(plane);
+        var planer=new THREE.PlaneGeometry(5,5,5,5);
+        var planet=new THREE.MeshBasicMaterial({wireframe:true,color:0xff4400,side:THREE.DoubleSide})
+        var plane=new THREE.Mesh(planer,planet);
+        plane.rotation.y=Math.PI/2;
+        plane.position.y=-1
+        plane.position.x=2.5
+        scene.add(plane);
+        var planer=new THREE.PlaneGeometry(5,5,5,5);
+        var planet=new THREE.MeshBasicMaterial({wireframe:true,color:0xffffff,side:THREE.DoubleSide})
+        var plane=new THREE.Mesh(planer,planet);
+        plane.rotation.y=Math.PI/2;
+        plane.position.y=-1
+        plane.position.x=-2.5
+        scene.add(plane);
+
+        render=()=>{
+            requestAnimationFrame(render);
+            renderer.render(scene,cam);
+        }
+        render();        
+        controls=new THREE.OrbitControls(cam,renderer.domElement);
+        
+    </script>
+</body>
+</html>
