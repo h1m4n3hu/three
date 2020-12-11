@@ -4,8 +4,15 @@
         <!--Mesh lambert dark shade wala hota h-->
         <meta http-equiv="content-type" content="text/html; charset-UTF-8" />
         <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r123/three.min.js" integrity="sha512-Q+IG0h7As6sfqE2t1Xf5IeamNyCXb4EXxGCA9Mlbpv7xtwurVHNdVDbyWeSQ3ulPf2FRlqeu77Ec3SJDdIR63w==" crossorigin="anonymous"></script>
+        <script src="OrbitControls.js"></script>
     </head>
 <body>
+    <style>
+        body{
+            overflow: hidden;
+            margin: 0;
+        }
+    </style>
 
     <script>
         var scene=new THREE.Scene();
@@ -21,17 +28,17 @@
         scene.add(light);
 
         var geometry=new THREE.BoxGeometry(1,1,1);
-        var material=new THREE.MeshLambertMaterial({color:0xff0000})
+        var material=new THREE.MeshLambertMaterial({wireframe:true})
         var mesh=new THREE.Mesh(geometry,material);
         scene.add(mesh);
 
+
         render=()=>{
             requestAnimationFrame(render);
-            mesh.rotation.x+=0.01;
-            mesh.rotation.y+=0.1;
             renderer.render(scene,cam);
         }
         render();        
+        controls=new THREE.OrbitControls(cam,renderer.domElement);
         
     </script>
 </body>
