@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <!--Mesh lambert dark shade wala hota h-->
+        <meta http-equiv="content-type" content="text/html; charset-UTF-8" />
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r123/three.min.js" integrity="sha512-Q+IG0h7As6sfqE2t1Xf5IeamNyCXb4EXxGCA9Mlbpv7xtwurVHNdVDbyWeSQ3ulPf2FRlqeu77Ec3SJDdIR63w==" crossorigin="anonymous"></script>
+        <script src="OrbitControls.js"></script>
+    </head>
+<body style="overflow: hidden; margin: 0;">
+
+    <script>
+        var scene=new THREE.Scene();
+        var cam=new THREE.PerspectiveCamera(75,window.innerWidth/window.innerHeight,0.1,1000);
+        cam.position.set(1,20,10);
+        var renderer=new THREE.WebGLRenderer({antialias:true});
+        renderer.setClearColor("rgb(145,255,250)");
+        renderer.setSize(window.innerWidth,window.innerHeight);
+        document.body.appendChild(renderer.domElement);
+
+        var light=new THREE.AmbientLight(0xffffff,1,400);
+        light.position.set(10,0,20);
+        scene.add(light);
+
+        var grounder=new THREE.BoxGeometry(20,20,2);
+        var groundet=new THREE.MeshLambertMaterial({wireframe:false,color:0x1a8200,side:THREE.DoubleSide})
+        var ground=new THREE.Mesh(grounder,groundet);
+        ground.rotation.x=Math.PI/2;
+        scene.add(ground);
+
+        var clouding=(lx,ly,lz,dx,dy,dz)=>{
+            var clouder=new THREE.BoxGeometry(lx,ly,lz);
+            var cloudet=new THREE.MeshLambertMaterial({color:0xffffff});
+            var cloud=new THREE.Mesh(clouder,cloudet);
+            cloud.position.set(dx,dy,dz)
+            scene.add(cloud);
+        }
+        clouding(4,1,5,5,10,5);
+        clouding(2,1,3,1,10,3);
+        clouding(4,1,3,-4,10,1);
+        clouding(4,2,3,5,9,-5);
+        clouding(7,1,2,-3,11,-5);
+
+        
+
+        render=()=>{
+            requestAnimationFrame(render);
+            renderer.render(scene,cam);
+        }
+        render();        
+        controls=new THREE.OrbitControls(cam,renderer.domElement);
+        
+    </script>
+</body>
+</html>

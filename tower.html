@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <!--Mesh lambert dark shade wala hota h-->
+        <meta http-equiv="content-type" content="text/html; charset-UTF-8" />
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r123/three.min.js" integrity="sha512-Q+IG0h7As6sfqE2t1Xf5IeamNyCXb4EXxGCA9Mlbpv7xtwurVHNdVDbyWeSQ3ulPf2FRlqeu77Ec3SJDdIR63w==" crossorigin="anonymous"></script>
+        <script src="OrbitControls.js"></script>
+    </head>
+<body style="overflow: hidden; margin: 0;">
+
+    <script>
+        var scene=new THREE.Scene();
+        var cam=new THREE.PerspectiveCamera(75,window.innerWidth/window.innerHeight,0.1,1000);
+        cam.position.set(0,0,10);
+        var renderer=new THREE.WebGLRenderer({antialias:true});
+        renderer.setClearColor("rgb(0,0,0)");
+        renderer.setSize(window.innerWidth,window.innerHeight);
+        document.body.appendChild(renderer.domElement);
+
+        var light=new THREE.PointLight(0xffffff,1,400);
+        light.position.set(10,0,20);
+        scene.add(light);
+
+        var spherer=new THREE.SphereGeometry(9,10,10);
+        var spheret=new THREE.MeshPhongMaterial({wireframe:true});
+        var sphere=new THREE.Mesh(spherer,spheret);
+        sphere.position.set(0,0,0)
+        scene.add(sphere);
+
+        var cubing=(xx,yy,zz,lx,ly,lz)=>{
+            var cuber=new THREE.BoxGeometry(lx,ly,lz);
+            var cubet=new THREE.MeshLambertMaterial({color:0x333333});
+            var cube=new THREE.Mesh(cuber,cubet);
+            cube.position.set(xx,yy,zz)
+            scene.add(cube);
+        }
+        cubing(-2,0,0,1,6,1);
+        cubing(2,0,0,1,6,1);
+        cubing(0.5,1,0,2,1,1);
+        cubing(-0.5,-1,0,2,1,1);
+
+        render=()=>{
+            requestAnimationFrame(render);
+            renderer.render(scene,cam);
+        }
+        render();        
+        controls=new THREE.OrbitControls(cam,renderer.domElement);
+        
+    </script>
+</body>
+</html>
