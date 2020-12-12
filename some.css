@@ -1,0 +1,16 @@
+#mainer{
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: -10;
+}
+
+.navlinker{
+    color: white;
+    position: absolute;
+    bottom: 100px;
+    color: rgb(63, 68, 131);
+    font-size: 17px;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    letter-spacing: 3px;
+}
