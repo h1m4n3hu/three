@@ -10,8 +10,14 @@
 <body>
 
     <div id="mainer"></div>
-    <div class="navlinker">HOME</div>
-    
+    <div class="namer">HIMANSHU SO<span class="flickk">NI</span></div>
+    <div class="typer">
+        <a class="navylinker" href="#">programs</a> | 
+        <a class="navylinker" href="#">sketches</a> | 
+        <a class="navylinker flickk" href="#">web</a>
+    </div>
+    <button onclick="rollout()">i am a button</button>
+
     <script>
         var scene=new THREE.Scene();
         var cam=new THREE.PerspectiveCamera(75,window.innerWidth/window.innerHeight,0.1,1000);
@@ -72,7 +78,7 @@
         render();
         controls=new THREE.OrbitControls(cam,renderer.domElement);
         controls.enablePan=false;
-        
+
     </script>
 </body>
 </html>
