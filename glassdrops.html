@@ -71,7 +71,6 @@
         cube4=cubing(-0.5,-1,0,2,1,1);
 
         render=()=>{
-            var time=Date.now()*0.0005;
             requestAnimationFrame(render);
             var time=Date.now()*0.0005;
             light1.position.set(Math.sin(time*2)*30,Math.cos(time*3)*40,Math.sin(time*2.5)*50);
@@ -86,12 +85,12 @@
         controls=new THREE.OrbitControls(cam,renderer.domElement);
         controls.enablePan=false;
 
-        function mouse_position(e)
-        {
-            var x = e.clientX;
-            var y = e.clientY; 
-            console.log(x,y);
-        }
+        //function mouse_position(e)
+        //{
+            //var x = e.clientX;
+            //var y = e.clientY; 
+            //console.log(x,y);
+        //}
         
     </script>
 </body>
