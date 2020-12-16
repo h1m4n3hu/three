@@ -9,16 +9,24 @@
     </head>
 <body>
 
-    <div id="mainer"></div>
+    <div id="mainer">
+    </div>
     <div class="namer">HIMANSHU SO<span class="flickk">NI</span></div>
     <div class="typer">
-        <a class="navylinker" href="#">programs</a> | 
+        <a class="navylinker" href="#hello">programs</a> | 
         <a class="navylinker" href="#">sketches</a> | 
         <a class="navylinker flickk" href="#">web</a>
     </div>
-    <button onclick="rollout()">i am a button</button>
+    <br><br><br>
+    <div class="programmer" id="hello" onmousemove="mouse_position(event)">
+        <button onclick="clgclg()">asdfafdasdf</button>
+        <div class="ekek"></div>
+    </div>
 
     <script>
+        
+        var onn=true;
+        
         var scene=new THREE.Scene();
         var cam=new THREE.PerspectiveCamera(75,window.innerWidth/window.innerHeight,0.1,1000);
         cam.position.set(-1,1,13);
@@ -43,11 +51,7 @@
         light5.position.set(-1,1,13);
         scene.add(light5);
 
-        /*var sphere=new THREE.Mesh(new THREE.SphereGeometry(0.5,100,100),new THREE.MeshBasicMaterial({wireframe:false,color:0xffffff}));
-        sphere.position.set(10,0,20)
-        scene.add(sphere);*/
-
-        var spherer=new THREE.SphereGeometry(10,4,1 );
+        var spherer=new THREE.SphereGeometry(10,4,2);
         var spheret=new THREE.MeshPhongMaterial({wireframe:true});
         var sphere=new THREE.Mesh(spherer,spheret);
         sphere.position.set(0,0,0)
@@ -55,30 +59,40 @@
 
         var cubing=(xx,yy,zz,lx,ly,lz)=>{
             var cuber=new THREE.BoxGeometry(lx,ly,lz);
-            var cubet=new THREE.MeshLambertMaterial({color:0x333333,emissive:0x555555,emissiveIntensity:0.5});
+            var cubet=new THREE.MeshLambertMaterial({color:0x333333,emissiveIntensity:0.5});
             var cube=new THREE.Mesh(cuber,cubet);
             cube.position.set(xx,yy,zz)
             scene.add(cube);
+            return cube;
         }
-        cubing(-2,0,0,1,6,1);
-        cubing(2,0,0,1,6,1);
-        cubing(0.5,1,0,2,1,1);
-        cubing(-0.5,-1,0,2,1,1);
+        cube1=cubing(-2,0,0,1,6,1);
+        cube2=cubing(2,0,0,1,6,1);
+        cube3=cubing(0.5,1,0,2,1,1);
+        cube4=cubing(-0.5,-1,0,2,1,1);
 
         render=()=>{
             var time=Date.now()*0.0005;
             requestAnimationFrame(render);
-            light1.position.set(Math.sin(time*0.7)*30,Math.cos(time*0.5)*40,Math.sin(time*0.3)*50);
-            light2.position.set(Math.sin(time*0.7)*30,Math.cos(time*0.5)*40,Math.cos(time*0.3)*50);
-            light3.position.set(Math.cos(time*0.7)*30,Math.cos(time*0.5)*40,Math.sin(time*0.3)*50);
-            light4.position.set(Math.cos(time*0.7)*30,Math.sin(time*0.5)*40,Math.cos(time*0.3)*50);
-            light5.position.set(Math.cos(time*0.7)*30,Math.cos(time*0.5)*40,Math.cos(time*0.3)*50);
+            var time=Date.now()*0.0005;
+            light1.position.set(Math.sin(time*2)*30,Math.cos(time*3)*40,Math.sin(time*2.5)*50);
+            light2.position.set(Math.sin(time*2)*30,Math.cos(time*3)*40,Math.cos(time*2.5)*50);
+            light3.position.set(Math.cos(time*2)*30,Math.cos(time*3)*40,Math.sin(time*2.5)*50);
+            light4.position.set(Math.cos(time*2)*30,Math.sin(time*3)*40,Math.cos(time*2.5)*50);
+            light5.position.set(Math.cos(time*2)*30,Math.cos(time*3)*40,Math.cos(time*2.5)*50);
             renderer.render(scene,cam);
         }
         render();
+        
         controls=new THREE.OrbitControls(cam,renderer.domElement);
         controls.enablePan=false;
 
+        function mouse_position(e)
+        {
+            var x = e.clientX;
+            var y = e.clientY; 
+            console.log(x,y);
+        }
+        
     </script>
 </body>
 </html>

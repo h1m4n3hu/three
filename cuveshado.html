@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <!--Mesh lambert dark shade wala hota h-->
+        <meta http-equiv="content-type" content="text/html; charset-UTF-8" />
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r123/three.min.js" integrity="sha512-Q+IG0h7As6sfqE2t1Xf5IeamNyCXb4EXxGCA9Mlbpv7xtwurVHNdVDbyWeSQ3ulPf2FRlqeu77Ec3SJDdIR63w==" crossorigin="anonymous"></script>
+        <script src="OrbitControls.js"></script>
+    </head>
+<body>
+    <style>
+        body{
+            overflow: hidden;
+            margin: 0;
+        }
+    </style>
+
+    <script>
+        var scene=new THREE.Scene();
+        var cam=new THREE.PerspectiveCamera(75,window.innerWidth/window.innerHeight,0.1,1000);
+        cam.position.set(20,3,20)
+        var renderer=new THREE.WebGLRenderer({antialias:true});
+        renderer.setClearColor("rgb(255,255,255)");
+        renderer.setSize(window.innerWidth,window.innerHeight);
+        document.body.appendChild(renderer.domElement);
+
+        renderer.shadowMap.enabled=true;
+        renderer.shadowMap.type=THREE.BasicShadowMap;
+        
+        var planer=new THREE.PlaneGeometry(20,20,20);
+        var planet=new THREE.MeshLambertMaterial({wireframe:false,color:0xffff00,side:THREE.DoubleSide})
+        var plane=new THREE.Mesh(planer,planet);
+        plane.rotation.x=Math.PI/2;
+        plane.position.y=-4;
+        plane.recieveShadow=true;
+        scene.add(plane);
+
+        var light=new THREE.AmbientLight(0xffffff,1,400);
+        light.position.set(10,10,10);
+        scene.add(light);
+        var light=new THREE.PointLight(0xffffff,1,100);
+        light.position.set(0,10,0);
+        light.castShadow=true;
+        light.shadow.camera.near=0.1;
+        light.shadow.camera.far=20;
+        scene.add(light);
+
+        var boxer=new THREE.BoxGeometry(5,5,5);
+        var boxet=new THREE.MeshLambertMaterial({wireframe:false,color:0x0000ff,side:THREE.DoubleSide});
+        var box=new THREE.Mesh(boxer,boxet);
+        box.castShadow=true;
+        box.recieveShadow=true;
+        scene.add(box);
+
+        render=()=>{
+            requestAnimationFrame(render);
+            renderer.render(scene,cam);
+        }
+        render();        
+        controls=new THREE.OrbitControls(cam,renderer.domElement);
+        
+    </script>
+</body>
+</html>

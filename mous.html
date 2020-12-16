@@ -3,41 +3,38 @@
     <head>
         <!--Mesh lambert dark shade wala hota h-->
         <meta http-equiv="content-type" content="text/html; charset-UTF-8"/>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r123/three.min.js" integrity="sha512-Q+IG0h7As6sfqE2t1Xf5IeamNyCXb4EXxGCA9Mlbpv7xtwurVHNdVDbyWeSQ3ulPf2FRlqeu77Ec3SJDdIR63w==" crossorigin="anonymous"></script>
-        <script src="OrbitControls.js"></script>
+        <!--script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r123/three.min.js" integrity="sha512-Q+IG0h7As6sfqE2t1Xf5IeamNyCXb4EXxGCA9Mlbpv7xtwurVHNdVDbyWeSQ3ulPf2FRlqeu77Ec3SJDdIR63w==" crossorigin="anonymous"></script>
+        <script src="OrbitControls.js"></scrip-->
     </head>
 <body style="overflow: hidden; margin: 0;">
+    <div id="circle"></div>
+    <style>
+        body{
+        margin:0;
+        padding:0;
+        overflow:hidden;
+        background-color:#000000;
+        }
+        div{
+        position:absolute;
+        height:200px;
+        width:200px;
+        border-radius:50%;
+        background-color: white;
+        border:2px solid rgb(255, 255, 255);
+        box-shadow: 0 0 100px white;
+        }
+    </style>
 
     <script>
-        var scene=new THREE.Scene();
-        var cam=new THREE.PerspectiveCamera(75,window.innerWidth/window.innerHeight,0.1,1000);
-        cam.position.set(1,7,7);
-        var renderer=new THREE.WebGLRenderer({antialias:true});
-        renderer.setClearColor("rgb(145,255,250)");
-        renderer.setSize(window.innerWidth,window.innerHeight);
-        document.body.appendChild(renderer.domElement);
 
-        var light=new THREE.AmbientLight(0xffffff,1,400);
-        light.position.set(10,0,20);
-        scene.add(light);
+    let circle = document.getElementById('circle');
+    const onMouseMove = (e) =>{
+    circle.style.left = (e.pageX-100) + 'px';
+    circle.style.top = (e.pageY-100) + 'px';
+    }
+    document.addEventListener('mousemove', onMouseMove);
 
-        var spherer=new THREE.BoxGeometry(2,2,2);
-        var spheret=new THREE.MeshLambertMaterial({wireframe:true});
-        var sphere=new THREE.Mesh(spherer,spheret);
-        scene.add(sphere);
-
-        window.addEventListener('mousemove',function(e){
-            //cam.position.set(1,7,7);
-            cam.position.x=e.x/100-7;
-            cam.position.y=e.y/100-4;
-        });
-        
-        render=()=>{
-            requestAnimationFrame(render);
-            renderer.render(scene,cam);
-        }
-        render();        
-        
     </script>
 </body>
 </html>

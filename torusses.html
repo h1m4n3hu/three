@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <!--Mesh lambert dark shade wala hota h-->
+        <meta http-equiv="content-type" content="text/html; charset-UTF-8" />
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r123/three.min.js" integrity="sha512-Q+IG0h7As6sfqE2t1Xf5IeamNyCXb4EXxGCA9Mlbpv7xtwurVHNdVDbyWeSQ3ulPf2FRlqeu77Ec3SJDdIR63w==" crossorigin="anonymous"></script>
+        <script src="OrbitControls.js"></script>
+    </head>
+<body>
+    <style>
+        body{
+            overflow: hidden;
+            margin: 0;
+        }
+    </style>
+
+    <script>
+        var scene=new THREE.Scene();
+        var cam=new THREE.PerspectiveCamera(75,window.innerWidth/window.innerHeight,0.1,1000);
+        cam.position.set(10,0,-15);
+        var renderer=new THREE.WebGLRenderer({antialias:true,alpha:true});
+        renderer.setClearColor("rgb(255,255,255)");
+        renderer.setSize(window.innerWidth,window.innerHeight);
+        document.body.appendChild(renderer.domElement);
+        var loader=new THREE.TextureLoader();
+        
+        const torer1=new THREE.SphereGeometry(10, 30, 8, 10, 6, 1.5, 0.25);
+        const toret1=new THREE.MeshLambertMaterial({wireframe:false, map:loader.load("krr.png"), side:THREE.DoubleSide});
+        const torus1=new THREE.Mesh(torer1,toret1);
+        torus1.rotation.x=Math.PI/8;
+        torus1.rotation.y=Math.PI/2;
+        scene.add(torus1);
+        
+        const torer2=new THREE.SphereGeometry(10, 30, 8, 10, 6, 1.5, 0.25);
+        const toret2=new THREE.MeshLambertMaterial({wireframe:false, map:loader.load("ske.png"), side:THREE.DoubleSide});
+        const torus2=new THREE.Mesh(torer2,toret2);
+        torus2.position.set(-5,0,0);
+        torus2.rotation.x=-Math.PI/7;
+        scene.add(torus2);
+        
+        var light=new THREE.AmbientLight(0xffffff,1,400);
+        light.position.set(10,10,10);
+        scene.add(light);
+
+        render=()=>{
+            requestAnimationFrame(render);
+            torus1.rotation.y+=0.0075;
+            torus2.rotation.y-=0.0075;
+            renderer.render(scene,cam);
+        }
+        render();        
+        controls=new THREE.OrbitControls(cam,renderer.domElement);
+        
+    </script>
+</body>
+</html>

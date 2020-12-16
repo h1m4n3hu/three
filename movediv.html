@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
+    <link rel="stylesheet" href="kuchh.css">
+    <title>Document</title>
+</head>
+<body onmousemove="mouse_position(event)">
+    
+    <div class="fulldiv">
+    
+    <div class="ekek"></div>
+    <div class="dodo"></div>
+
+    </div>
+    
+    <script>
+        function mouse_position(e)
+        {
+            var x = e.offsetX;
+            var y = e.offsetY;
+
+            if(x<100&y<100){
+                $(".ekek").animate({ "top": "0px" }, "fast");
+                $(".dodo").animate({ "left": "0px" }, "fast");
+            }else if(x>=100&y>=100){
+                $(".ekek").animate({ "top": "300px" }, "fast");
+                $(".dodo").animate({ "top": "300px" }, "fast");
+            }
+        }
+    </script>
+    
+</body>
+</html>
