@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body style="margin: 10px; height: 4000px;">
+    
+    <div id="divv" style=" margin: 100px; width: 100px; height: 100px; position: fixed; background-color: blue;"></div>
+    
+    <script>
+        var scrl=()=>{ 
+            var ht=window.innerHeight;
+            var ydist=window.pageYOffset;
+            var fullht=document.body.offsetHeight;
+            total=fullht-ht;
+            percent=parseInt((ydist/total)*100);
+            document.getElementById("divv").style.opacity=`${1-percent/100}`;
+		}
+		window.addEventListener('scroll',scrl);
+    </script>
+
+</body>
+</html>
