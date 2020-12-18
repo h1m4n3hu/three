@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="three.js"></script>
+    <script src="OrbitControls.js"></script>
+    <title>Document</title>
+</head>
+<body style="margin: 0;">
+    
+    <div id="mainer"></div>
+    
+    <script>
+
+        var scene=new THREE.Scene();
+        var cam=new THREE.PerspectiveCamera(75,window.innerWidth/window.innerHeight,0.1,1000);
+        cam.position.set(0,0,35);
+        var renderer=new THREE.WebGLRenderer({antialias:true,alpha:true});
+        renderer.setClearColor(0x000000,0);
+        renderer.setSize(window.innerWidth,window.innerHeight);
+        document.getElementById("mainer").appendChild(renderer.domElement);
+
+        var light=new THREE.PointLight(0xffffff,3,400);
+        light.position.set(-10,50,20);
+        scene.add(light);
+        var light=new THREE.PointLight(0xc0c0c0,3,400);
+        light.position.set(50,50,0);
+        scene.add(light);
+
+        var build=(xx,yy,zz,lx,ly,lz)=>{
+            var builder=new THREE.BoxGeometry(xx,yy,zz);
+            var buildet=new THREE.MeshLambertMaterial({color:0xf1f1f1});
+            var building=new THREE.Mesh(builder,buildet);
+            building.position.set(lx,ly,lz);
+            scene.add(building);
+            return building;
+        }
+        b1=build(10,20,5,-50,-10,0);
+        b2=build(16,25,5,-36,-7.5,0);
+        b3=build(20,15,5,-16,-12.5,0);
+        b4=build(18,30,5,5,-5,0);
+        b5=build(15,20,5,23,-10,0);
+        b6=build(30,15,5,47,-12.5,0);
+        b7=build(20,40,5,73,0,0);
+
+        render=()=>{
+            requestAnimationFrame(render);
+            renderer.render(scene,cam);
+            b1.position.x-=0.03;if(b1.position.x<-70){b1.position.x=70};
+            b2.position.x-=0.03;if(b2.position.x<-70){b2.position.x=70};
+            b3.position.x-=0.03;if(b3.position.x<-70){b3.position.x=70};
+            b4.position.x-=0.03;if(b4.position.x<-70){b4.position.x=70};
+            b5.position.x-=0.03;if(b5.position.x<-70){b5.position.x=70};
+            b6.position.x-=0.03;if(b6.position.x<-70){b6.position.x=70};
+            b7.position.x-=0.03;if(b7.position.x<-70){b7.position.x=70};
+        }
+        render();        
+        controls=new THREE.OrbitControls(cam,renderer.domElement);
+
+    </script>
+    
+</body>
+</html>

@@ -3,8 +3,13 @@
     <head>
         <!--Mesh lambert dark shade wala hota h-->
         <meta http-equiv="content-type" content="text/html; charset-UTF-8" />
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r123/three.min.js" integrity="sha512-Q+IG0h7As6sfqE2t1Xf5IeamNyCXb4EXxGCA9Mlbpv7xtwurVHNdVDbyWeSQ3ulPf2FRlqeu77Ec3SJDdIR63w==" crossorigin="anonymous"></script>
-        <script src="OrbitControls.js"></script>
+        <script src="http://stemkoski.github.io/Three.js/js/Three.js"></script>
+        <script src="http://stemkoski.github.io/Three.js/js/Detector.js"></script>
+        <script src="http://stemkoski.github.io/Three.js/js/Stats.js"></script>
+        <script src="http://stemkoski.github.io/Three.js/js/OrbitControls.js"></script>
+        <script src="http://stemkoski.github.io/Three.js/js/THREEx.KeyboardState.js"></script>
+        <script src="http://stemkoski.github.io/Three.js/js/THREEx.FullScreen.js"></script>
+        <script src="http://stemkoski.github.io/Three.js/js/THREEx.WindowResize.js"></script>   
     </head>
 <body style="overflow: hidden; margin: 0;">
 
@@ -26,6 +31,16 @@
         var sphere=new THREE.Mesh(spherer,spheret);
         scene.add(sphere);
 
+        var cubeGeom = new THREE.CubeGeometry(10,10, 10, 1, 1, 1);
+        mirrorCubeCamera = new THREE.CubeCamera( 0.1, 5000, 512 );
+        // mirrorCubeCamera.renderTarget.minFilter = THREE.LinearMipMapLinearFilter;
+        scene.add( mirrorCubeCamera );
+        var mirrorCubeMaterial = new THREE.MeshBasicMaterial( { envMap: mirrorCubeCamera.renderTarget } );
+        mirrorCube = new THREE.Mesh( cubeGeom, mirrorCubeMaterial );
+        mirrorCube.position.set(-75,50,0);
+        mirrorCubeCamera.position = mirrorCube.position;
+        scene.add(mirrorCube);	
+        
         render=()=>{
             requestAnimationFrame(render);
             renderer.render(scene,cam);

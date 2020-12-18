@@ -9,6 +9,7 @@ html{
     top: 0;
     left: 0;
     z-index: -10;
+    cursor: text;
 }
 
 .namer{
@@ -51,7 +52,7 @@ html{
     25%{opacity:0.3;}
     30%{opacity:1;}
     70%{opacity:0.7;}
-    72%{opacity:0.2; text-shadow:0 0 3px #030b38, 0 0 6px #030b38, 0 0 9px #030b38;}
+    72%{opacity:0.2; text-shadow:0 0 rgb(22, 44, 242);}
     77%{opacity:.9;}
     100%{opacity:.9;}
 }
@@ -61,6 +62,9 @@ html{
     backdrop-filter: blur(5px);
     width: 100%;
     background-color: rgba(0, 0, 0, 0.5);
+    position: absolute;
+    top: 0;
+    left: 1000px;
 }
 
 .ekek{
