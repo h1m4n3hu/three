@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta http-equiv="content-type" content="text/html; charset-UTF-8" />
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r123/three.min.js" integrity="sha512-Q+IG0h7As6sfqE2t1Xf5IeamNyCXb4EXxGCA9Mlbpv7xtwurVHNdVDbyWeSQ3ulPf2FRlqeu77Ec3SJDdIR63w==" crossorigin="anonymous"></script>
+        <script src="DragControls.js"></script>
+        <script src="OrbitControls.js"></script>
+    </head>
+<body  style="margin: 0;">
+
+    <script>
+        var scene=new THREE.Scene();
+        var cam=new THREE.PerspectiveCamera(75,window.innerWidth/window.innerHeight,0.1,1000);
+        cam.position.z=15;
+        var renderer=new THREE.WebGLRenderer({antialias:true});
+        renderer.setClearColor("rgb(100,0,200)");
+        renderer.setSize(window.innerWidth,window.innerHeight);
+        document.body.appendChild(renderer.domElement);
+
+        var objects=[];
+        var photu=(wid,ht,link,xpos,ypos,zpos)=>{
+            var mapper=new THREE.TextureLoader().load(link);
+            var frame=new THREE.PlaneGeometry(wid,ht);
+            var fur=new THREE.MeshBasicMaterial({map:mapper});
+            var pic=new THREE.Mesh(frame,fur);
+            pic.position.set(xpos,ypos,zpos)
+            scene.add(pic);
+            objects.unshift(pic);
+            return pic;
+        }
+        p1=photu(6,4,'jhjhjhjh.jpg',5,0,0);
+        p2=photu(6,4,'thi.jpg',12,0,0);
+        p3=photu(6,4,'jhjhjhjh.jpg',19,0,0);
+        p4=photu(6,4,'thi.jpg',26,0,0);
+        p5=photu(6,4,'jhjhjhjh.jpg',33,0,0);
+        p6=photu(6,4,'thi.jpg',40,0,0);
+        p7=photu(6,4,'jhjhjhjh.jpg',47,0,0);
+        
+        render=()=>{
+            requestAnimationFrame(render);
+            //p1.position.x-=0.04;
+            if(p1.position.x<-15){p1.position.x=30;}
+            renderer.render(scene,cam);
+        }
+        render();
+        controls1=new THREE.DragControls(objects,cam,renderer.domElement);
+        controls2=new THREE.OrbitControls(cam,renderer.domElement);
+        //controls2.enableZoom = false;
+        controls2.enableRotate = false;
+        //controls2.enablePan = false;
+        
+    </script>
+</body>
+</html>
