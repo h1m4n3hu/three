@@ -3,15 +3,34 @@
     <head>
         <meta http-equiv="content-type" content="text/html; charset-UTF-8" />
         <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r123/three.min.js" integrity="sha512-Q+IG0h7As6sfqE2t1Xf5IeamNyCXb4EXxGCA9Mlbpv7xtwurVHNdVDbyWeSQ3ulPf2FRlqeu77Ec3SJDdIR63w==" crossorigin="anonymous"></script>
-        <script src="DragControls.js"></script>
+        <link rel="stylesheet" href=stile.css">
         <script src="OrbitControls.js"></script>
     </head>
-<body  style="margin: 0;">
+<body style="margin: 0;">
 
+    <style>
+        span{
+            font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+            display: block;
+            font-size: 10vw;
+            transform: rotate(90deg);
+            position: absolute;
+            color: rgba(255, 255, 255, 0.3);
+            bottom: 0;
+            line-height: 100px;
+            right: 150px;
+            text-align: right;
+        }
+    </style>
+    
+<div class="texter">
+    <span>today<br>might<br>be<br>the<br>day</span>
+</div>
+    
     <script>
         var scene=new THREE.Scene();
         var cam=new THREE.PerspectiveCamera(75,window.innerWidth/window.innerHeight,0.1,1000);
-        cam.position.set(0,10,0);
+        cam.position.set(0,0,10);
         cam.lookAt(0,0,0);
         var renderer=new THREE.WebGLRenderer({antialias:true});
         renderer.setSize(window.innerWidth,window.innerHeight);
