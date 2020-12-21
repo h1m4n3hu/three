@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta http-equiv="content-type" content="text/html; charset-UTF-8" />
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r123/three.min.js" integrity="sha512-Q+IG0h7As6sfqE2t1Xf5IeamNyCXb4EXxGCA9Mlbpv7xtwurVHNdVDbyWeSQ3ulPf2FRlqeu77Ec3SJDdIR63w==" crossorigin="anonymous"></script>
+        <script src="DragControls.js"></script>
+        <script src="OrbitControls.js"></script>
+    </head>
+<body  style="margin: 0;">
+
+    <script>
+        var scene=new THREE.Scene();
+        var cam=new THREE.PerspectiveCamera(75,window.innerWidth/window.innerHeight,0.1,1000);
+        cam.position.set(-5,0,10);
+        cam.lookAt(0,0,0);
+        var renderer=new THREE.WebGLRenderer({antialias:true});
+        renderer.setSize(window.innerWidth,window.innerHeight);
+        document.body.appendChild(renderer.domElement);
+
+        var baller=new THREE.SphereGeometry(0.1,1);
+        var ballet=new THREE.MeshBasicMaterial({wireframe:true,color:0xffff00})
+        var ball=new THREE.Mesh(baller,ballet);
+        //scene.add(ball)
+        
+        var rhombi=(posx,posy,posz,rot)=>{
+            var rhomber=new THREE.CircleGeometry(4,4);
+            var rhombet=new THREE.EdgesGeometry(rhomber);
+            var rhombus=new THREE.LineSegments(rhombet,new THREE.LineBasicMaterial({color:0xffffff}));
+            rhombus.position.set(posx,posy,posz);
+            rhombus.rotation.z=(Math.PI/18)*rot;
+            scene.add(rhombus);
+            return rhombus
+        }
+        r1=rhombi(0,0,-4,-4);
+        r12=rhombi(0,0,-3.25,-3.25);
+        r15=rhombi(0,0,-3.5,-3.5);
+        r17=rhombi(0,0,-3.75,-3.75);
+        r2=rhombi(0,0,-3,-3);
+        r22=rhombi(0,0,-2.25,-2.25);
+        r25=rhombi(0,0,-2.5,-2.5);
+        r27=rhombi(0,0,-2.75,-2.75);
+        r3=rhombi(0,0,-2,-2);
+        r32=rhombi(0,0,-1.25,-1.25);
+        r35=rhombi(0,0,-1.5,-1.5);
+        r37=rhombi(0,0,-1.75,-1.75);
+        r4=rhombi(0,0,-1,-1);
+        r42=rhombi(0,0,-0.25,-0.25);
+        r45=rhombi(0,0,-0.5,-0.5);
+        r47=rhombi(0,0,-0.75,-0.75);
+        r5=rhombi(0,0,0,0);
+        r52=rhombi(0,0,0.25,0.25);
+        r55=rhombi(0,0,0.5,0.5);
+        r57=rhombi(0,0,0.75,0.75);
+        r6=rhombi(0,0,1,1);
+        r62=rhombi(0,0,1.25,1.25);
+        r65=rhombi(0,0,1.5,1.5);
+        r67=rhombi(0,0,1.75,1.75);
+        r7=rhombi(0,0,2,2);
+        r72=rhombi(0,0,2.25,2.25);
+        r75=rhombi(0,0,2.5,2.5);
+        r77=rhombi(0,0,2.75,2.75);
+        r8=rhombi(0,0,3,3);
+        r82=rhombi(0,0,3.25,3.25);
+        r85=rhombi(0,0,3.5,3.5);
+        r87=rhombi(0,0,3.75,3.75);
+        r9=rhombi(0,0,4,4);
+        r92=rhombi(0,0,4.25,4.25);
+        r95=rhombi(0,0,4.5,4.5);
+        r97=rhombi(0,0,4.75,4.75);
+        
+        render=()=>{
+            var time=Date.now()*0.005;
+            cam.position.z=Math.sin(time*0.07)*6;
+            cam.position.x=Math.cos(time*0.07)*6;
+            cam.position.y=Math.cos(time*0.07)*6;
+            
+            requestAnimationFrame(render);
+            cam.lookAt(0,0,0);
+            r1.rotation.z+=Math.PI/360;     r15.rotation.z+=Math.PI/360;    r12.rotation.z+=Math.PI/360;   r17.rotation.z+=Math.PI/360;
+            r2.rotation.z+=Math.PI/360;     r25.rotation.z+=Math.PI/360;    r22.rotation.z+=Math.PI/360;   r27.rotation.z+=Math.PI/360;
+            r3.rotation.z+=Math.PI/360;     r35.rotation.z+=Math.PI/360;    r32.rotation.z+=Math.PI/360;   r37.rotation.z+=Math.PI/360;
+            r4.rotation.z+=Math.PI/360;     r45.rotation.z+=Math.PI/360;    r42.rotation.z+=Math.PI/360;   r47.rotation.z+=Math.PI/360;
+            r5.rotation.z+=Math.PI/360;     r55.rotation.z+=Math.PI/360;    r52.rotation.z+=Math.PI/360;   r57.rotation.z+=Math.PI/360;
+            r6.rotation.z+=Math.PI/360;     r65.rotation.z+=Math.PI/360;    r62.rotation.z+=Math.PI/360;   r67.rotation.z+=Math.PI/360;
+            r7.rotation.z+=Math.PI/360;     r75.rotation.z+=Math.PI/360;    r72.rotation.z+=Math.PI/360;   r77.rotation.z+=Math.PI/360;
+            r8.rotation.z+=Math.PI/360;     r85.rotation.z+=Math.PI/360;    r82.rotation.z+=Math.PI/360;   r87.rotation.z+=Math.PI/360;
+            r9.rotation.z+=Math.PI/360;     r95.rotation.z+=Math.PI/360;    r92.rotation.z+=Math.PI/360;   r97.rotation.z+=Math.PI/360;
+            renderer.render(scene,cam);
+        }
+        render();
+        controls=new THREE.OrbitControls(cam,renderer.domElement);
+
+    </script>
+</body>
+</html>

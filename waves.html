@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta http-equiv="content-type" content="text/html; charset-UTF-8" />
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r123/three.min.js" integrity="sha512-Q+IG0h7As6sfqE2t1Xf5IeamNyCXb4EXxGCA9Mlbpv7xtwurVHNdVDbyWeSQ3ulPf2FRlqeu77Ec3SJDdIR63w==" crossorigin="anonymous"></script>
+        <script src="DragControls.js"></script>
+        <script src="OrbitControls.js"></script>
+    </head>
+<body  style="margin: 0;">
+
+    <script>
+        var scene=new THREE.Scene();
+        var cam=new THREE.PerspectiveCamera(75,window.innerWidth/window.innerHeight,0.1,1000);
+        cam.position.set(0,10,0);
+        cam.lookAt(0,0,0);
+        var renderer=new THREE.WebGLRenderer({antialias:true});
+        renderer.setSize(window.innerWidth,window.innerHeight);
+        document.body.appendChild(renderer.domElement);
+
+        var baller=new THREE.SphereGeometry(0.1,1);
+        var ballet=new THREE.MeshBasicMaterial({wireframe:true,color:0xffff00})
+        var ball=new THREE.Mesh(baller,ballet);
+        //scene.add(ball)
+        
+        ll=[];
+        
+        var rhombi=(posx,posy,posz,rot)=>{
+            var rhomber=new THREE.CylinderGeometry(0.001,0.001,10);
+            var rhombet=new THREE.EdgesGeometry(rhomber);
+            var rhombus=new THREE.LineSegments(rhombet,new THREE.LineBasicMaterial({color:0xffffff}));
+            rhombus.position.set(posx,posy,posz);
+            rhombus.rotation.z=(Math.PI/18)*rot;
+            scene.add(rhombus);
+            return rhombus
+        }
+
+        for(var i=-10;i<=10.5;i+=0.5){
+            ll.push(rhombi(0,0,i,i));
+        }
+        
+        var rotat=(item)=>{
+            item.rotation.z+=Math.PI/360;
+        }
+        
+        render=()=>{
+            var time=Date.now()*0.005;
+            cam.position.z=Math.sin(time*0.07)*6;
+            cam.position.x=Math.cos(time*0.07)*6;
+            //cam.position.y=Math.cos(time*0.07)*6;
+            requestAnimationFrame(render);
+            ll.forEach(rotat);
+            cam.lookAt(0,0,0);
+            renderer.render(scene,cam);
+        }
+        render();
+        controls=new THREE.OrbitControls(cam,renderer.domElement);
+
+    </script>
+</body>
+</html>
