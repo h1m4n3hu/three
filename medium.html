@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <!--Mesh lambert dark shade wala hota h-->
+        <meta http-equiv="content-type" content="text/html; charset-UTF-8" />
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r123/three.min.js" integrity="sha512-Q+IG0h7As6sfqE2t1Xf5IeamNyCXb4EXxGCA9Mlbpv7xtwurVHNdVDbyWeSQ3ulPf2FRlqeu77Ec3SJDdIR63w==" crossorigin="anonymous"></script>
+        <script src="OrbitControls.js"></script>
+    </head>
+<body>
+    <style>
+        body{
+            overflow: hidden;
+            margin: 0;
+        }
+    </style>
+
+    <script>
+        var scene=new THREE.Scene();
+        var cam=new THREE.PerspectiveCamera(75,window.innerWidth/window.innerHeight,0.1,1000);
+        cam.position.set(0,5,20);
+        var renderer=new THREE.WebGLRenderer({antialias:true,alpha:true});
+        renderer.setClearColor("rgb(255, 179, 0)");
+        renderer.setPixelRatio(window.devicePixelRatio)
+        renderer.setSize(window.innerWidth,window.innerHeight);
+        document.body.appendChild(renderer.domElement);
+        var loader=new THREE.TextureLoader();
+        
+        var ring=(rad,ht)=>{
+            var height = 1.5;
+            var radialSegments = 50;
+            var heightSegments = ht;
+            var openEnded = true;
+            var thetaStart = Math.PI * 0;
+            var thetaLength = Math.PI * 2;
+            var torer1 = new THREE.CylinderBufferGeometry(rad, rad, height, radialSegments, heightSegments, openEnded, thetaStart, thetaLength);
+            var toret1=new THREE.MeshLambertMaterial({wireframe:false, transparent: true, opacity: 0.9, map:loader.load("nxtr.png"), side:THREE.DoubleSide});
+            var torus1=new THREE.Mesh(torer1,toret1);
+            torus1.position.set(5,10-rad,0)
+            scene.add(torus1);
+            return torus1
+        }
+        torus0=ring(10,2);
+        torus9=ring(9,2);
+        torus8=ring(8,2);
+        torus7=ring(7,2);
+        torus6=ring(6,1.5);
+        torus5=ring(5,1.5);
+        torus4=ring(4,1.5);
+        torus3=ring(3,1);
+        torus2=ring(2,1);
+        torus1=ring(1,1);
+        
+        var light=new THREE.AmbientLight(0xffffff,1,400);
+        light.position.set(10,10,10);
+        scene.add(light);
+
+        render=()=>{
+            requestAnimationFrame(render);
+            torus1.rotation.y+=0.005;
+            torus2.rotation.y+=0.005;
+            torus3.rotation.y+=0.005;
+            torus4.rotation.y+=0.005;
+            torus5.rotation.y+=0.005;
+            torus6.rotation.y+=0.005;
+            torus7.rotation.y+=0.005;
+            torus8.rotation.y+=0.005;
+            torus9.rotation.y+=0.005;
+            torus0.rotation.y+=0.005;
+            renderer.render(scene,cam);
+        }
+        render();        
+        controls=new THREE.OrbitControls(cam,renderer.domElement);
+        
+    </script>
+</body>
+</html>
