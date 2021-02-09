@@ -1,0 +1,126 @@
+@import url('https://fonts.googleapis.com/css2?family=Oxygen:wght@700&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Sacramento');
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Raleway&display=swap');
+
+#canvas{
+    position: absolute; 
+    top: 0; 
+    left: 0; 
+    width: 100vw; 
+    height: 100vh;
+    outline: none;
+    z-index: -5;
+    cursor: none;
+}
+
+@-webkit-keyframes rotate {
+    from {
+      -webkit-transform: rotate(0deg);
+    }
+    to { 
+      -webkit-transform: rotate(360deg);
+    }
+}
+
+#point{
+    z-index: 3;
+    position: absolute;
+    width: 12px;
+    height: 12px;
+    background: linear-gradient(blue,red);
+    border-radius: 50%;
+    pointer-events: none;
+    -webkit-animation-name:             rotate; 
+    -webkit-animation-duration:         2s; 
+    -webkit-animation-iteration-count:  infinite;
+    -webkit-animation-timing-function: linear;
+}
+
+.pb{
+    font-size: 5rem;
+    color: white;
+    font-family: 'Oxygen', sans-serif;
+    position: absolute;
+    top: 70vh;
+    margin-left: 100px;
+}
+
+@media(max-width:500px){
+    
+.pb{
+    font-size: 3rem;
+    top: 70vh;
+    margin-left: 0px;
+}
+
+#point{
+    top: -100px;
+    left: -100px;
+}
+    
+}
+
+
+
+
+.allet{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    color: wheat;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    user-select: none;
+    transition: color 3s linear;
+}
+.named{
+    font-family: 'Roboto Slab', serif;
+    font-size: 3em;
+}
+.press{
+    font-family: 'Sacramento', cursive;
+    font-size: 3rem;
+}
+
+.filler{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgb(0, 0, 0);
+    transition: background-color 3s linear;
+}
+.transp{
+    background-color: rgba(0, 0, 0, 0);
+}
+.transptxt{
+    color: rgba(0, 0, 0, 0);
+}
+
+.contain{
+    width: 100%;
+    height: 95vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.hidbox{
+    display:inline-block;
+    overflow:hidden;
+    color: white;
+}
+
+.otwo{
+    font-size: 5rem;
+    font-family: 'Raleway', sans-serif;
+    position: relative;
+    bottom: -6rem;
+    transition: bottom 0.4s linear;
+}
