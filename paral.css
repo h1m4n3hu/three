@@ -1,0 +1,97 @@
+@import url('https://fonts.googleapis.com/css2?family=Oswald&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@1,300&display=swap');
+
+body{
+    min-height: 100vh;
+    margin-top: 40vh;
+    cursor: none;
+}
+
+.head{
+    font-size: 20rem;
+    font-family: 'Oswald', sans-serif;
+    display: flex;
+    justify-content: space-around;
+    width: 99%;
+}
+
+#circle{
+    z-index: 3;
+    position: absolute;
+    height:100px;
+    width:100px;
+    border-radius:50%;
+    border:0px solid white;
+    backdrop-filter: invert(100%);
+    color: aliceblue;
+}
+
+#leftgear{
+    position: fixed;
+    font-family:'Helvetica Neue', sans-serif;
+    font-size: 50px;
+    z-index: 10;
+    top: 10px;
+    right: 20px;
+    color: grey;
+    transition: color 0.4s;
+}
+#leftgear:hover{
+    color: white;
+}
+
+.subhead{
+    display: flex;
+    justify-content: space-around;
+    letter-spacing: 15px;
+    font-size: 4rem;
+    font-family: 'Poppins', sans-serif;
+}
+
+.imger{
+    position: absolute;
+    z-index: 5;
+}
+
+.imger1{
+    top: 200vh;
+    left: 10vw;
+}
+.imger2{top: 270vh;left: 50vw;}
+.imger3{top: 200vh;left: 15vw;}
+.imger4{top: 350vh;left: 60vw;}
+.imger5{top: 260vh;left: 2vw;}
+.imger6{top: 450vh;left: 25vw;}
+.imger7{top: 300vh;left: 10vw;}
+.imger8{top: 400vh;left: 50vw;}
+.imger9{top: 500vh;left: 40vw;}
+.imger10{top: 400vh;left: 10vw;}
+.imger11{top: 450vh;left: 60vw;}
+.imger12{top: 550vh;left: 10vw;}
+
+.footer{
+    width: 100%;
+    height: 100vh;
+    position: absolute;
+    top: 650vh;
+    left: 0;
+    background-color: black;
+}
+
+.contacter{
+    position: absolute;
+    left: 100px;
+    bottom: 50px;
+    color: white;
+    font-size: 1.5rem;
+    font-family: 'Oswald', sans-serif;
+}
+
+.spec{
+    position: absolute;
+    right: 100px;
+    bottom: 50px;
+    color: white;
+    font-size: 1.5rem;
+    font-family: 'Oswald', sans-serif;
+}
